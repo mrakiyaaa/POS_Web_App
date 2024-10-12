@@ -1,38 +1,24 @@
-package com.example.pos_demo.entity;
+package com.example.pos_demo.dto;
 
 import com.example.pos_demo.converter.JsonConverter;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
+
 import java.util.ArrayList;
 
-@Entity
-@Table(name = "customer")
-public class Customer {
+public class CustomerDTO {
 
-    @Id
-    @Column(name = "customer_id", length = 45)
     private int customerId;
-
-    @Column(name = "customer_name", length = 45, nullable = false)
     private String customerName;
-
-    @Column(name = "customer_address", length = 255)
     private String customerAddress;
-
-    @Convert(converter = JsonConverter.class)
-    @Column(name = "customer_numbers", columnDefinition = "TEXT")
     private ArrayList contactNumber;
-
-    @Column(name = "nic")
     private String nic;
-
-    @Column(name = "active_state", columnDefinition = "TINYINT default 1")
     private boolean active;
 
-    // Constructors
-    public Customer() {
+    public CustomerDTO() {
     }
 
-    public Customer(int customerId, String customerName, String customerAddress, ArrayList contactNumber, String nic, boolean active) {
+    public CustomerDTO(int customerId, String customerName, String customerAddress, ArrayList contactNumber, String nic, boolean active) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
@@ -41,7 +27,8 @@ public class Customer {
         this.active = active;
     }
 
-    // Getters
+    //Getters
+
     public int getCustomerId() {
         return customerId;
     }
@@ -66,7 +53,10 @@ public class Customer {
         return active;
     }
 
-    // Setters
+
+
+    //Setters
+
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
@@ -91,9 +81,10 @@ public class Customer {
         this.active = active;
     }
 
+    //To String
     @Override
     public String toString() {
-        return "Customer{" +
+        return "CustomerDTO{" +
                 "customerId=" + customerId +
                 ", customerName='" + customerName + '\'' +
                 ", customerAddress='" + customerAddress + '\'' +
@@ -102,4 +93,5 @@ public class Customer {
                 ", active=" + active +
                 '}';
     }
+
 }
