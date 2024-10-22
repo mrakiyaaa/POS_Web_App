@@ -1,5 +1,4 @@
 package com.example.pos_demo.service.impl;
-
 import com.example.pos_demo.dto.CustomerDTO;
 import com.example.pos_demo.dto.request.CustomerUpdateDTO;
 import com.example.pos_demo.entity.Customer;
@@ -7,6 +6,9 @@ import com.example.pos_demo.repository.CustomerRepo;
 import com.example.pos_demo.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CustomerServiceIMPL implements CustomerService {
@@ -62,8 +64,28 @@ public class CustomerServiceIMPL implements CustomerService {
             );
             return customerDTO;
         }else {
-            throw new RuntimeException("No Customer");        }
+            throw new RuntimeException("No Customer");
+        }
 
+    }
+
+    @Override
+    public List<CustomerDTO> getAllCustomer() {
+        List<Customer> getAllCustomers = customerRepo.findAll();
+        List<CustomerDTO> customerDTOList = new ArrayList<>();
+
+        for (Customer customer : getAllCustomers) {
+            CustomerDTO customerDTO = new CustomerDTO(
+                    customer.getCustomerId(),
+                    customer.getCustomerName(),
+                    customer.getCustomerAddress(),
+                    customer.getContactNumber(),
+                    customer.getNic(),
+                    customer.isActive()
+            );
+        }
+
+        return customerDTOList;
     }
 
 }
