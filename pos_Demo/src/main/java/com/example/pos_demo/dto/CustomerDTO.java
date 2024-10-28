@@ -1,8 +1,7 @@
 package com.example.pos_demo.dto;
 
-import com.example.pos_demo.converter.JsonConverter;
-import jakarta.persistence.Column;
-import jakarta.persistence.Convert;
+import org.hibernate.annotations.TypeDefs;
+
 
 import java.util.ArrayList;
 

@@ -83,6 +83,7 @@ public class CustomerServiceIMPL implements CustomerService {
                     customer.getNic(),
                     customer.isActive()
             );
+            customerDTOList.add(customerDTO);
         }
 
         return customerDTOList;
