@@ -1,2 +1,2 @@
 # POS_Web_App
-Point Of Sale Web Application Using Springboot
+Point Of Sale Web Application Backend Using Springboot
