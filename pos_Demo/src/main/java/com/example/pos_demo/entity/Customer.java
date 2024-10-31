@@ -1,11 +1,24 @@
 package com.example.pos_demo.entity;
 
-import com.example.pos_demo.converter.JsonConverter;
-import jakarta.persistence.*;
+import com.vladmihalcea.hibernate.type.json.JsonType;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
+
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+
+
 import java.util.ArrayList;
 
 @Entity
 @Table(name = "customer")
+@TypeDefs({
+        @TypeDef(name = "json", typeClass = JsonType.class)
+})
 public class Customer {
 
     @Id
@@ -18,8 +31,8 @@ public class Customer {
     @Column(name = "customer_address", length = 255)
     private String customerAddress;
 
-    @Convert(converter = JsonConverter.class)
-    @Column(name = "customer_numbers", columnDefinition = "TEXT")
+    @Type(type = "json")
+    @Column(name = "customer_numbers", columnDefinition = "json")
     private ArrayList contactNumber;
 
     @Column(name = "nic")
