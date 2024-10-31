@@ -6,10 +6,7 @@ import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 import java.util.ArrayList;
@@ -23,6 +20,7 @@ public class Customer {
 
     @Id
     @Column(name = "customer_id", length = 45)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private int customerId;
 
     @Column(name = "customer_name", length = 45, nullable = false)
